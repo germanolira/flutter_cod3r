@@ -16,31 +16,33 @@ void main() {
 class PerguntaAppState extends State<PerguntaApp> {
   var _perguntaSelecionada = 0;
 
+  final _perguntas = const [
+    {
+      'texto': 'Qual é a sua cor favorita?',
+      'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco'],
+    },
+    {
+      'texto': 'Qual é o seu animal favorito?',
+      'respostas': ['Coelho', 'Cobra', 'Elefante', 'Leão'],
+    },
+    {
+      'texto': 'Qual é o seu instrutor favorito?',
+      'respostas': ['Maria', 'João', 'Leo', 'Pedro'],
+    }
+  ];
+
   void _responder() {
     setState(() {
       _perguntaSelecionada++;
     });
   }
 
+  bool get temPerguntaSelecionada
+
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, Object>> perguntas = [
-      {
-        'texto': 'Qual é a sua cor favorita?',
-        'respostas': ['Preto', 'Vermelho', 'Verde', 'Branco'],
-      },
-      {
-        'texto': 'Qual é o seu animal favorito?',
-        'respostas': ['Coelho', 'Cobra', 'Elefante', 'Leão'],
-      },
-      {
-        'texto': 'Qual é o seu instrutor favorito?',
-        'respostas': ['Maria', 'João', 'Leo', 'Pedro'],
-      }
-    ];
-
     List<String> respostas =
-        perguntas[_perguntaSelecionada].cast()['respostas'];
+        _perguntas[_perguntaSelecionada].cast()['respostas'];
     // List<Widget> widgets =
     //     respostas.map((t) => Resposta(t, _responder)).toList();
 
@@ -55,7 +57,7 @@ class PerguntaAppState extends State<PerguntaApp> {
         ),
         body: Column(
           children: [
-            Questao(perguntas[_perguntaSelecionada]['texto'].toString()),
+            Questao(_perguntas[_perguntaSelecionada]['texto'].toString()),
             ...respostas.map((t) => Resposta(t, _responder)).toList(),
           ],
         ),
