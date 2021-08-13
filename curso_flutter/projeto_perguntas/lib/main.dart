@@ -37,7 +37,9 @@ class PerguntaAppState extends State<PerguntaApp> {
     });
   }
 
-  bool get temPerguntaSelecionada
+  bool get temPerguntaSelecionada {
+    return _perguntaSelecionada < _perguntas.length;
+  }
 
   @override
   Widget build(BuildContext context) {
