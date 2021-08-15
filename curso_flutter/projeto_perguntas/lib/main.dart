@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
-import './questao.dart';
-import './resposta.dart';
+import './questionario.dart';
 import './resultado.dart';
 
-void main() {
-  runApp(PerguntaApp());
-}
+main() => runApp(new PerguntaApp());
 
-class PerguntaAppState extends State<PerguntaApp> {
+class _PerguntaAppState extends State<PerguntaApp> {
   var _perguntaSelecionada = 0;
-
   final _perguntas = const [
     {
       'texto': 'Qual é a sua cor favorita?',
@@ -33,19 +29,23 @@ class PerguntaAppState extends State<PerguntaApp> {
     }
   }
 
-  
+  bool get temPerguntaSelecionada {
+    return _perguntaSelecionada < _perguntas.length;
+  }
 
   @override
   Widget build(BuildContext context) {
-    
-
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
           title: Text('Perguntas'),
         ),
         body: temPerguntaSelecionada
-            ? 
+            ? Questionario(
+                perguntas: _perguntas,
+                perguntaSelecionada: _perguntaSelecionada,
+                quandoResponder: _responder,
+              )
             : Resultado(),
       ),
     );
@@ -53,7 +53,7 @@ class PerguntaAppState extends State<PerguntaApp> {
 }
 
 class PerguntaApp extends StatefulWidget {
-  PerguntaAppState createState() {
-    return new PerguntaAppState();
+  _PerguntaAppState createState() {
+    return _PerguntaAppState();
   }
 }
