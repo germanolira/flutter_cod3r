@@ -19,6 +19,7 @@ class _TransactionFormState extends State<TransactionForm> {
     final title = _titleController.text;
     final value = double.tryParse(_valueController.text) ?? 0.0;
 
+    // ignore: unnecessary_null_comparison
     if (title.isEmpty || value <= 0 || _selectedDate == null) {
       return;
     }
@@ -70,6 +71,7 @@ class _TransactionFormState extends State<TransactionForm> {
               child: Row(
                 children: <Widget>[
                   Text(
+                    // ignore: unnecessary_null_comparison
                     _selectedDate == null
                         ? 'Nenhuma data selecionada!'
                         : 'Data Selecionada: ${DateFormat('dd/MM/y').format(_selectedDate)}',
