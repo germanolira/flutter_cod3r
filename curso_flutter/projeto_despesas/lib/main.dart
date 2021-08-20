@@ -32,8 +32,7 @@ class MyHomePage extends StatelessWidget {
               elevation: 5,
             ),
           ),
-          TransactionList(_transactions),
-          TransactionForm(),
+          TransactionUser(),
         ],
       ),
     );
